@@ -58,7 +58,7 @@ app.controller('mainCtrl', function($scope, $http){
     }
     //var result = a;
     var result = sDate.getDay();
-    this.example = a;
+    this.example = result;
     //this.example = vm.formatDate(result[0]) +" "+ vm.formatDate(result[0 + (6 - date1.getDay())]) + " " + vm.formatDate(result[0 + (6 - date1.getDay()) + 1]) + " " + vm.formatDate(result[0 + (6 - date1.getDay()) + 7]);
   }
   this.onprint = function () {
