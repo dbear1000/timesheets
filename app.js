@@ -25,6 +25,7 @@ app.controller('mainCtrl', function($scope, $http){
     return [day, month, year].join('-');
   }
   //vm.startDate = "3, 10, 2017";
+  this.dates = [];
   this.timesheets = {
     "candidate": {
       "name": "",
@@ -56,9 +57,9 @@ app.controller('mainCtrl', function($scope, $http){
       a.push(date1);
       date1 = new Date(date1.setDate(date1.getDate()+1))
     }
-    //var result = a;
-    var result = sDate.getDay();
-    this.example = result;
+    var result = a;
+    //var result = sDate.getDay();
+    vm.dates = result;
     //this.example = vm.formatDate(result[0]) +" "+ vm.formatDate(result[0 + (6 - date1.getDay())]) + " " + vm.formatDate(result[0 + (6 - date1.getDay()) + 1]) + " " + vm.formatDate(result[0 + (6 - date1.getDay()) + 7]);
   }
   this.onprint = function () {
