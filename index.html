@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Timesheet App</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+      @media print {
+          body * {
+              visibility: hidden;
+          }
+
+          .print-content * {
+              visibility: visible;
+              overflow: visible;
+          }
+
+          #mainPage * {
+              display: none;
+          }
+
+          .modal {
+              position: absolute;
+              left: 0;
+              top: 0;
+              margin: 0;
+              padding: 0;
+              min-height: 550px;
+              visibility: visible;
+              /**Remove scrollbar for printing.**/
+              overflow: visible !important;
+          }
+
+          .modal-dialog {
+              visibility: visible !important;
+              /**Remove scrollbar for printing.**/
+              overflow: visible !important;
+          }
+
+          li {
+              page-break-after: auto;
+          }
+          .onPrint {
+              display:none;
+          }
+      }
+    </style>
+  </head>
+  <body ng-controller="mainCtrl as vm">
+
+    <div class="container">
+      <h2>Form</h2>
+      <form ng-submit="vm.generate()">
+        <div class="form-group">
+          <label class="sr-only" for="caName">Candidate Name:</label>
+          <input type="text"  ng-model="vm.timesheets.candidate.name" class="form-control" id="caName" placeholder="Candidate Name">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="clName">Client Name:</label>
+          <input type="text" ng-model="vm.timesheets.clientName" class="form-control" id="clName" placeholder="Client Name">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="jobTitle">Job Title:</label>
+          <input type="text" ng-model="vm.timesheets.jobTitle" class="form-control" id="jobTitle" placeholder="Job Title">
+        </div>
+        <div class="form-group col-lg-6">
+          <label for="startDate">Placement Start:</label>
+          <input type="date" ng-model="vm.timesheets.startDate" class="form-control" id="startDate" placeholder="dd/mm/yyyy">
+        </div>
+        <div class="form-group col-lg-6">
+          <label for="endDate">Placement End:</label>
+          <input type="date" ng-model="vm.timesheets.endDate" class="form-control" id="endDate" placeholder="Placement End">
+        </div>
+        <div class="form-group">
+          <label class="" for="frequency">Placement Type:</label>
+          <select class="form-control">
+            <option value="week">Weekly</option>
+            <option value="month">Monthly</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-default" data-toggle="modal" data-target="#myModal">Generate Timesheets</button>
+      </form>
+    </div>
+
+    <div class="container">
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog print-content" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close onPrint" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Timesheet</h4>
+                  </div>
+                  <div class="modal-body">
+                      {{vm.timesheets}}
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default onPrint" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary onPrint" data-ng-click="vm.onprint()">Print Code</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="app.js" charset="utf-8"></script>
+  </body>
+</html>
