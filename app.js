@@ -50,9 +50,6 @@ app.controller('mainCtrl', function($scope, $http){
     var date1 = new Date(vm.timesheets.startDate);
     var date2 = new Date(vm.timesheets.endDate);
     var a = [];
-    var sDate = new Date(vm.timesheets.startDate);
-    var eDate = new Date(vm.timesheets.endDate);
-    //var result = vm.calculateWeeksBetween(date1, date2);
     while(date1 < date2){
       a.push(date1);
       date1 = new Date(date1.setDate(date1.getDate()+1))
