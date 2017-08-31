@@ -103,9 +103,25 @@
                   <div class="modal-header">
                       <button type="button" class="close onPrint" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                       <h4 class="modal-title" id="myModalLabel">Timesheet</h4>
+                      <h4 class="pull-right">{{vm.timesheets.clientName}}</h4>
                   </div>
                   <div class="modal-body">
-                      {{vm.timesheets}}
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Start</th>
+                            <th>Finish</th>
+                            <th>Total Hours</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="date in vm.dates">
+                            <td>{{date | date: "dd-MM-yyyy"}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-default onPrint" data-dismiss="modal">Close</button>
